@@ -18,7 +18,7 @@
 - name: systemd restart
   include_role:
     name: common
-    tasks_from: system
+    tasks_from: systemd
 
 
 - name: setting up mongodb repo
