@@ -1,0 +1,42 @@
+- name: app setup
+  include_role:
+    name: common
+    tasks_from: app-setup
+
+- name: maven setup
+  include_role:
+    name: common
+    tasks_from: maven
+
+- name: system restart
+  include_role:
+    name: common
+    tasks_from: systemd
+
+- name: install mysql client software
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
+
+- name: load schema into the database
+  community.mysql.mysql_db:
+    login_user: "{{ MYSQL_ROOT_USER }}"
+    login_password: "{{ MYSQL_ROOT_PASSWORD }}"
+    login_host: "{{ MYSQL_HOST }}"
+    name: all
+    state: import
+    target: "{{ item }}"
+  loop:
+    - /app/db/schema.sql
+    - /app/db/app-user.sql
+    - /app/db/master-data.sql
+
+
+- name: systemctl restart the shipping
+  tags:
+  - import
+  ansible.builtin.service:
+    name: shipping
+    state: restarted       
+      

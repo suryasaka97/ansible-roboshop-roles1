@@ -1,0 +1,4 @@
+MYSQL_HOST: mysql.anantya.space
+CART_HOST: cart.anantya.space
+MYSQL_ROOT_USER: root
+mysql_root_password: RoboShop@1
