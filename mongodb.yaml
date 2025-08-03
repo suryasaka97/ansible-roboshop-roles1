@@ -1,4 +1,5 @@
 - name : provisioning the mongodb application
   hosts: mongodb
+  become: yes
   roles:
   - mongodb

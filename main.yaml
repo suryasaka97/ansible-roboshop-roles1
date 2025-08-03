@@ -1,4 +1,5 @@
 - name : provisioning the "{{ component }}" application
-  hosts: mongodb
+  hosts: "component"
+  become: yes
   roles:
   - "{ component }"
