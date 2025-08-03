@@ -1,0 +1,5 @@
+CART_HOST: cart.anantya.space
+USER_HOST: user.anantya.space
+RABBITMQ_HOST: rabbitmq.anantya.space
+RABBITMQ_USER: roboshop
+RABBITMQ_PASSWORD: roboshop123
