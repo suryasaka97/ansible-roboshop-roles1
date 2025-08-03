@@ -46,5 +46,7 @@
     src: nginx.conf.j2
     dest: /etc/nginx/nginx.conf
   notify: 
-  - "restarting the nginx service"
+  - restart nginx
+  
+
 

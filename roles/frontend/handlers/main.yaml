@@ -1,4 +1,8 @@
-- name: "restarting the nginx service"
+- name: restart nginx
   ansible.builtin.service:
     name: nginx
     state: restarted
+
+
+
+    
