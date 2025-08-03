@@ -1,0 +1,5 @@
+PAYMENT_HOST: payment.anantya.space
+SHIPPING_HOST: shipping.anantya.space
+CATALOGUE_HOST: catalogue.anantya.space
+CART_HOST: cart.anantya.space
+USER_HOST: user.anantya.space
