@@ -1,0 +1,45 @@
+#include tasks from another role in ansible playbook
+
+# - name: do something
+#   include_role:
+#     name: common
+#     tasks_from: login
+
+- name: app setup
+  include_role:
+    name: common
+    tasks_from: app-setup
+
+- name: nodejs setup
+  include_role:
+    name: common
+    tasks_from: nodejs   
+
+- name: systemd restart
+  include_role:
+    name: common
+    tasks_from: system
+
+
+- name: setting up mongodb repo
+  ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: installing mongodb client
+  ansible.builtin.dnf:
+    name: mongodb-mongosh
+    state: present            
+
+- name: check products are loaded or not
+  ansible.builtin.command: mongosh --host mongodb.anantya.space --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
+  register: product_load_output 
+
+- name: Loading products to the database
+  ansible.builtin.shell: mongosh --host mongodb.anantya.space </app/db/master-data.js
+  when: product_load_output.stdout | int < 0
+
+- name: products are already loaded to database
+  ansible.builtin.debug:  
+    msg: Producta are already loaded
+  when: (product_load_output.stdout | int > 0 

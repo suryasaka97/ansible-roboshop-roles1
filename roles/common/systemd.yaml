@@ -1,0 +1,14 @@
+- name: setting up system_d service to be managed by systemctl
+  ansible.builtin.copy:
+    src: catalogue.service
+    dest: /etc/systemd/system/catalogue.service
+
+- name: loading the systemd service
+  ansible.builtin.systemd_service:
+    daemon_reload: true
+
+- name: enable and restart the systemctl service
+  ansible.builtin.service:
+    name: catalogue
+    state: restarted
+    enabled: yes

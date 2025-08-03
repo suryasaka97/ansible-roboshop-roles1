@@ -1,0 +1,4 @@
+- name : provisioning the mongodb application
+  hosts: mongodb
+  roles:
+  - mongodb
