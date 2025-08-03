@@ -1,5 +1,5 @@
 - name : provisioning the "{{ component }}" application
-  hosts: "component"
+  hosts: "{{ component }}"
   become: yes
   roles:
   - "{ component }"
