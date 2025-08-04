@@ -9,6 +9,6 @@
 
 - name: enable and restart the systemctl service
   ansible.builtin.service:
-    name: "{{ component }}"
+  name: "{{ component }}"
     state: restarted
     enabled: yes
