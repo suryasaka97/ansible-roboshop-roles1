@@ -18,7 +18,7 @@
 - name: systemd restart
   tags:
   - restart
-  import_role:
+  include_role:
     name: common
     tasks_from: systemd
 
