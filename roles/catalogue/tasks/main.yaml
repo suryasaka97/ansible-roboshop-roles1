@@ -16,6 +16,8 @@
     tasks_from: nodejs   
 
 - name: systemd restart
+  tags:
+  - restart
   include_role:
     name: common
     tasks_from: systemd
@@ -43,3 +45,19 @@
   ansible.builtin.debug:  
     msg: Producta are already loaded
   when: product_load_output.stdout | int > 0 
+
+
+# - name: deployment
+#   tags:
+#   - deployment
+#   include_role:
+#    name: common
+#    tasks_from: deployment
+
+
+# - name: Deployment
+#   tags: 
+#   - deployment
+#   import_role:
+#     name: common
+#     tasks_from: deployment   
