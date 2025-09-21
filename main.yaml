@@ -1,5 +1,7 @@
 - name : provisioning the "{{ component }}" application
-  hosts: "{{ component }}"
+  #hosts: "{{ component }}"
+  hosts: localhost
   become: yes
+  connection: local
   roles:
   - "{{ component }}"
